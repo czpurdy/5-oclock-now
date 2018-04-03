@@ -1,0 +1,299 @@
+@font-face {
+	font-family: "Park Lane";
+	src: url("css/fonts/ParkLaneNF");
+	src: 
+	url("./fonts/ParkLaneNF.ttf") format("ttf"),
+	url("./fonts/ParkLaneNF.woff") format("woff"),
+	url("./fonts/ParkLaneNF.woff2") format("woff2"),
+	url("./fonts/ParkLaneNF.eot") format("eot"),
+	url("./fonts/ParkLaneNF.svg") format("svg");
+}
+
+header {
+	background-color: black;
+	height: 15%;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logo_container {
+	/* float: left; */
+	left: 0;
+}
+
+body {
+    /*font-family: 'Roboto', sans-serif;*/
+	font-family: "Avenir Next", Avenir;
+    /* font-size: 16px; */
+    text-align: center;
+}
+
+footer {
+	background: black;
+	color: #e3ebeb;
+	height: 15px;
+	padding-top: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -30px;
+}
+.container:after {
+  content: "";
+  display: block;
+}
+.footer, .container:after {
+  height: 30px; 
+}
+
+h1.title {
+	font-family: "Park Lane";
+	font-size: 7vw;
+	color: #f0ffd3;
+	/* padding: 25px 15px 15px 0; */
+	/* float: center; */
+	position: relative;
+	/* need to fix the position so this title is actually centered -- right now the logo is pushing it slightly to the right */
+} @media only screen and (max-width: 1000px) {
+	h1.title {
+		/* padding: 25px 15px 15px 0; */
+	}
+  } @media only screen and (max-width: 800px) {
+	h1.title {
+		font-size: 7vw;
+		/* padding: 30px 15px 15px 0; */
+	}
+  } @media only screen and (max-width: 600px) {
+	h1.title {
+		font-size: 8vw;
+		/* padding: 7% 15px 15px 0; */
+	}
+  } 
+
+#logo {
+	float: left;
+	position: relative;
+	height: 80px;
+} @media screen and (max-width: 800px) {
+	#logo {
+		height: 70px;
+	}
+  } @media only screen and (max-width: 600px) {
+	.logo-container, #logo {
+		display: none;
+	}
+  }
+
+#map {
+	height: 100vh;
+	width: 100%;
+	/*min-height: 100%;*/
+	/* equal to footer height */
+	/*margin-bottom: -30px;*/
+}
+
+#city-time-container {
+	background-image: url("../images/highdef/3.jpg");
+	background-size: cover;
+	background-position-y: center;
+	color: white;
+	-webkit-text-stroke: .5px black;
+	text-shadow:
+		-.5px -.5px 0 #000,  
+		.5px -.5px 0 #000,
+		-.5px .5px 0 #000,
+		.5px .5px 0 #000;
+	font-family: "Avenir Next", Avenir;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 30px;
+} @media only screen and (max-width: 600px) {
+	#city-time-container {
+		padding: 20px;
+	} #cityContainer, #timeContainer {
+		font-size: 5vw;
+	}
+  } 
+/* @media only screen and (max-width: 600px) {
+	#city-time-container { 
+		height: 13vh;
+	}
+	header {
+		height: 15%;
+	}
+	#cityContainer { 
+		padding: 4% 10px 0 10px; 
+	}
+} @media only screen and (min-width: 600px) {
+	#city-time-container { 
+		height: 18vh;
+	}
+	header {
+		height: 15%;
+	}
+	#cityContainer { 
+		padding: 5% 10px 0 10px; 
+	}
+}  @media only screen and (min-width: 768px) {
+	#city-time-container { 
+		height: 22vh;
+	}
+	/* header {
+		height: 15%;
+	} */
+	/* #cityContainer { 
+		padding: 4% 10px 0 10px; 
+	}
+}  @media only screen and (min-width: 992px) {
+	#cityContainer { 
+		padding: 2% 10px 0 10px; 
+	}
+}   */
+
+#cityContainer {
+    /* padding: 50px 10px 0 10px;  */
+    font-size: 4.5vw;
+    font-weight: bold;
+} @media only screen and (min-width: 1200px) {
+	#cityContainer, #timeContainer {
+		font-size: 4vw;
+	} 
+} @media only screen and (max-width: 600px) {
+	#cityContainer {
+		font-size: 5vw;
+	} #timeContainer {
+		font-size: 5vw;
+	} 
+}
+
+#timeContainer {
+    font-size: 4.5vw;
+    /* padding: 10px 10px 50px 10px;  */
+} 	
+
+.drink-suggest {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row; /* works with row or column */
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: space-around;
+   justify-content: space-around;
+   padding: 100px;
+   display: none;
+}
+
+.flexdrink {
+   /*background: #DFB5A7;*/
+   /*color: #414141;*/
+   border: #4f5656 solid 3px;
+   width: 200px;
+   margin: 0 auto; 
+   background: #414141;
+   color: #e3ebeb;
+}
+
+h1 {
+	font-size: 3vh;
+	font-weight: 800;
+	padding: 10px;
+}
+
+h2.drink-name {
+	font-size: 2.5vh;
+	padding-bottom: 10px;
+	font-weight: 700;
+	/* padding: 20px; */
+}
+
+span.utc {
+	font-size: 2.25vh;
+	font-weight: 500;
+}
+
+.drink-image {
+	width: 200px;
+	border: #4f5656 2px solid;
+	max-height: 130px;
+	max-width: 100%;
+	/*margin: 10px;*/
+}
+
+.front {
+	background: #656565;
+	color: #e3ebeb;
+	height:200px;
+	width:200px;
+	-webkit-transition: width 2s;
+	transition: width 2s;
+}
+
+/* .back {
+	height:200px;
+	width:200px;
+	-webkit-transition: width 2s;
+	transition: width 2s;
+
+	webkit transitions
+
+	css transition - resize (shrink class - toggleClass in JS)
+} */
+
+.front.expand {
+	width: 400px;
+}
+
+h3 {
+	font-size: 2.25vh;
+	text-align: left;
+	font-weight: 600;
+}
+
+ul {
+	padding: 10px;
+}
+
+ul li {
+	font-size: 1.75vh;
+	text-align: left;
+}
+
+/*.recipe-button {
+	background: #656565;
+	color: #e3ebeb;
+	border: #f0ffd3 0px solid;
+	border-radius: 5px;
+ 	padding: 10px 0;
+ 	width: 150px;
+ 	text-align: center;
+ 	display: block;
+ 	margin: 0 auto;
+ }*/
+
+ /* The sticky class is added to the header with JS when it reaches its scroll position */
+/* .sticky {
+	position: fixed;
+	top: 0;
+	width: 100%
+  } */
+
+/* #leftarrow {
+	height: 50px;
+	width: 50px;
+	background: black;
+} */
