@@ -576,28 +576,19 @@ function setBackground() {
   }
 }
 
-// Build InfoWindow HTML content string for Google Maps
+// Build InfoWindow HTML content string for Google Maps (compact preview to avoid layout duplication)
 function buildInfoWindowContent(city) {
   const drink = city.drinks[0];
-  const ingredientsHtml = drink.ingredients
-    .map(ing => `<li>${ing}</li>`)
-    .join("");
-  const directionsHtml = drink.directions
-    .map(dir => `<li>${dir}</li>`)
-    .join("");
-
   return `
     <div id="content">
       <h1 class="city-name">${city.name}</h1>
       <h2 class="drink-name">${drink.name}</h2>
-      <img src="images/${drink.image}" height="180" alt="${drink.name}" style="max-width:100%; border-radius:4px; margin-bottom:8px;">
-      <h3 class="ingredients-heading">Ingredients</h3>
-      <ul class="ingredients">${ingredientsHtml}</ul>
-      <h3 class="directions-heading">Directions</h3>
-      <ol class="directions">${directionsHtml}</ol>
+      <img src="images/${drink.image}" height="130" alt="${drink.name}" style="width:100%; max-width:200px; border-radius:6px; object-fit:cover; margin:4px 0;">
+      <p class="infowindow-hint">👇 Recipe details featured below</p>
     </div>
   `;
 }
+
 
 // Google Maps Callback Function
 window.initMap = async function () {
