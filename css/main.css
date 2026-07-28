@@ -214,6 +214,39 @@ footer p {
 	margin: 0;
 }
 
+/* Google Maps InfoWindow Style Isolation */
+#content {
+	color: #1f2937;
+	padding: 4px;
+	text-align: center;
+	max-width: 220px;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#content h1.city-name {
+	font-size: 1.15rem;
+	font-weight: 700;
+	color: #111827;
+	margin: 0 0 4px 0;
+	text-shadow: none;
+}
+
+#content h2.drink-name {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #b45309;
+	margin: 0 0 6px 0;
+	padding: 0;
+}
+
+#content .infowindow-hint {
+	font-size: 0.82rem;
+	color: #4b5563;
+	margin: 6px 0 0 0;
+	font-weight: 500;
+}
+
+
 /* Map Fallback Notice for Localhost / Auth Errors */
 .map-fallback {
 	height: auto !important;
