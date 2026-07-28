@@ -446,7 +446,7 @@ const cities = [
 ];
 
 const TARGET_HOUR = 17; // 5:00 PM (17:00 local time)
-let selectedCity = null;
+let selectedCity = null; // null by default so clock updates dynamically as timezones advance
 let mapInstance = null;
 let markersMap = {};
 let infoWindowInstance = null;
@@ -510,6 +510,7 @@ function getActive5OclockCity() {
 
 // Update DOM header with current city and clock
 function updateClockDisplay() {
+  // If selectedCity is null, dynamically resolve current 5 PM city on every tick
   const activeCity = selectedCity || getActive5OclockCity();
   const cityContainer = document.getElementById("cityContainer");
   const timeContainer = document.getElementById("timeContainer");
@@ -534,7 +535,7 @@ function renderRecipeCard(city) {
     .join("");
 
   container.innerHTML = `
-    <div class="flexdrink flip">
+    <div class="flexdrink flip" tabindex="0" role="button" aria-label="Recipe card for ${drink.name}. Click or press Enter to flip recipe.">
       <section class="front">
         <h2 class="drink-name">${drink.name}</h2>
         <img src="images/${drink.image}" alt="${drink.name}" class="drink-image">
@@ -551,8 +552,17 @@ function renderRecipeCard(city) {
 
   // Initialize jQuery flip on newly added card
   if ($.fn.flip) {
-    $(".flexdrink.flip").flip({
+    const $card = $(".flexdrink.flip");
+    $card.flip({
       trigger: "click"
+    });
+
+    // Add keyboard accessibility for Enter / Space key press
+    $card.on("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " " || e.keyCode === 13 || e.keyCode === 32) {
+        e.preventDefault();
+        $card.flip("toggle");
+      }
     });
   }
 }
@@ -609,16 +619,20 @@ window.initMap = async function () {
       }
     }
 
-    mapInstance = new google.maps.Map(mapElement, {
+    const mapOptions = {
       zoom: 3,
       center: { lat: activeCity.lat, lng: activeCity.lng },
       zoomControl: true,
       scaleControl: true,
       scrollwheel: false,
-      gestureHandling: "cooperative",
-      mapId: "DEMO_MAP_ID"
-    });
+      gestureHandling: "cooperative"
+    };
 
+    if (AdvancedMarkerElement) {
+      mapOptions.mapId = "DEMO_MAP_ID";
+    }
+
+    mapInstance = new google.maps.Map(mapElement, mapOptions);
     infoWindowInstance = new google.maps.InfoWindow();
 
     cities.forEach(city => {
@@ -647,12 +661,18 @@ window.initMap = async function () {
         updateClockDisplay();
         renderRecipeCard(city);
         infoWindowInstance.setContent(buildInfoWindowContent(city));
-        infoWindowInstance.open(mapInstance, marker);
+        infoWindowInstance.open({
+          anchor: marker,
+          map: mapInstance
+        });
       });
 
       if (city.id === activeCity.id) {
         infoWindowInstance.setContent(buildInfoWindowContent(city));
-        infoWindowInstance.open(mapInstance, marker);
+        infoWindowInstance.open({
+          anchor: marker,
+          map: mapInstance
+        });
       }
     });
   } catch (err) {
@@ -662,10 +682,9 @@ window.initMap = async function () {
 
 // Document Ready Initialization
 $(document).ready(function () {
-  selectedCity = getActive5OclockCity();
-
+  // Do NOT assign selectedCity here so updateClockDisplay dynamically updates as hours change
   updateClockDisplay();
-  renderRecipeCard(selectedCity);
+  renderRecipeCard(getActive5OclockCity());
   setBackground();
 
   // Update clock every second

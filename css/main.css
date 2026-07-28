@@ -134,6 +134,12 @@ html, body {
 	overflow: hidden;
 }
 
+.flexdrink:focus-visible {
+	outline: 3px solid var(--accent-color);
+	outline-offset: 4px;
+}
+
+
 .flexdrink .front,
 .flexdrink .back {
 	padding: 20px;
